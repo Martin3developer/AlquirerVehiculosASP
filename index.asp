@@ -13,7 +13,7 @@ end if
 if Request.Cookies("user")<>"" then
 	Session("user")=Request.Cookies("user")
 	Session("tipo")=Request.Cookies("tipo")
-	response.redirect("asp/inicio.asp")
+	response.redirect("asp/vehiculos.asp")
 end if 
 
 
@@ -47,7 +47,7 @@ If ok="Enviar" Then
 				response.cookies("user")=datos("nick")
 				response.cookies("tipo")=Session("tipo")
 			end if 
-			response.redirect("asp/inicio.asp")
+			response.redirect("asp/vehiculos.asp")
 		end if
 		if user="admin" and pass="admin"  then
 			Session("user")="admin"
@@ -60,7 +60,7 @@ If ok="Enviar" Then
 
 			response.cookies("user").expires=Date()+365
 			response.cookies("tipo").expires=Date()+365
-			response.redirect("asp/inicio.asp")
+			response.redirect("asp/clientes.asp")
 		end if 
 
 		datos.MoveNext
@@ -78,25 +78,63 @@ End If
 	<head>
 		<meta charset="utf-8">
 		<title>Inicio</title>
+		 <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/plugins/fontawesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+       
+
 	</head>
-	<body >
+	<body>
+	<div class="login">
+		<div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Regístrate en Alkilómetro</h3>
+                            		<p>Introduce tu Nick y tu Contraseña para comenzar.</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-lock"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" action="" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Nick</label>
+			                        	<input type="text" name="user" placeholder="Nick..." class="form-username form-control" id="form-username">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Contraseña</label>
+			                        	<input type="password" name="pass" placeholder="Password..." class="form-password form-control" id="form-password">
+			                        </div>
+			                        <%
+										if val=2 then
+												response.write("<p><b>Usuario y contraseña incorrectos</b></p>")
+											end if 
+									%>
+									<input type="checkbox" name="recordar"> Recordar sesión<br>
 			
-	<form id="formulario" action="#" method="post" role="form">
-   
-        <legend>Login</legend>
-      		<input type="text" class="form-control" id="uLogin" placeholder="Usuario" name="user"><br>
-			<input type="password" placeholder="Contraseña" name="pass"><br>
+          							<input  name="enviar" class="btn btn-block" type="submit" value="Enviar">
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+	</div>
 
-			<%
-				if val=2 then
-						response.write("<p><b>Usuario y contraseña incorrectos</b></p>")
-					end if 
-			%>
 
-				<input type="checkbox" name="recordar"> Recordar sesión<br>
-			
-          	<input  name="enviar" type="submit" value="Enviar">
-	</form>
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
 
 	</body>
 </html>
